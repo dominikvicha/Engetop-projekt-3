@@ -26,6 +26,11 @@ JAK POSTUPOVAT:
 PROJEKT MUSÍ SPLŇOVAT TYTO BODY: 
 1. Na úvod si svůj soubor popiš hlavičkou, ať se s tebou můžeme snadněji spojit (zejména zaslání zpětné vazby na Discord).
 2. Soubor s programem (..nebo také skript) s příponou .py, který pro správný běh potřebuje 2 argumenty pro spuštění,
+spuštění probíhá přes - odkaz který se zadá do terminálu  
+a jako druhý argument je výstupní soubor -> musí končit jako .csv
+
+
+
 3. soubor se seznamem pouze relevantních knihoven a jejich verzí k projektu (requirements.txt),
 4. stručnou dokumentaci (popis, instalace knihoven, ukázka) (README.md)
 5. soubor s uloženým výstupem (.csv),
@@ -47,5 +52,15 @@ Ve výstupu (soubor .csv) každý řádek obsahuje informace pro konkrétní obe
 import requests
 from bs4 import BeautifulSoup
 import csv
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+
 
 
