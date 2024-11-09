@@ -42,3 +42,10 @@ Ve výstupu (soubor .csv) každý řádek obsahuje informace pro konkrétní obe
 6. kandidující strany (co sloupec, to počet hlasů pro stranu pro všechny strany).
 
 """
+
+
+import requests
+from bs4 import BeautifulSoup
+import csv
+
+
