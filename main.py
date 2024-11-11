@@ -52,15 +52,42 @@ Ve výstupu (soubor .csv) každý řádek obsahuje informace pro konkrétní obe
 import requests
 from bs4 import BeautifulSoup
 import csv
+import argparse
+from pprint import pprint
+
+url_1 = "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103"
+
+def main():
+    main_data(url_1)
+
+def response_url(url):
+    # odpoved ze serveru 
+    response = requests.get(url)
+    return BeautifulSoup(response.text, 'html.parser')
 
 
+def main_data(url):
+    #funkce na to dostat hlavni data 
+    soup = response_url(url)
+    table_tag = soup.find("div", {"id": "core"})
+    rows = table_tag.find_all("tr")
 
-
-
+    pprint(rows)
 
 
 
 if __name__ == "__main__":
+    #print(response_url(url_1))
+    main()
+    
 
 
+
+
+
+
+
+    # nachystam aby kod fungoval pres jeden arg. 
+    # parser = argparse.ArgumentParser(description="")
+    
 
