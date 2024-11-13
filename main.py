@@ -37,7 +37,7 @@ a jako druhý argument je výstupní soubor -> musí končit jako .csv
 6. zápis organizovaný do krátkých a přehledných funkcí.
 
 VÝSTUP BUDE OBSAHOVAT: 
-Ve výstupu (soubor .csv) každý řádek obsahuje informace pro konkrétní obec. Tedy podobu:
+Ve výstupu (soubor .csv) každý řádek obsahuje informace pro konkrétní obec. Tedy podobu:0
 
 1. kód obce
 2. název obce
@@ -57,9 +57,10 @@ from pprint import pprint
 
 url_1 = "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103"
 
+"""
 def main():
     main_data(url_1)
-    
+"""
 
 def response_url(url):
     # odpoved ze serveru 
@@ -73,24 +74,38 @@ def main_data(url):
     table_tag = soup.find("div", {"id": "core"})
     rows = table_tag.find_all("tr")
 
-    # pprint(rows)      pro konotrolu
-
+    
     results = []
+
     for row in rows[2:]:
         cells = row.find_all("td")
-        results.append(cells)
 
-    pprint(results)
-    #return results
+        if not cells:
+            continue
+        
+    
+        identifier = cells[0].get_text(strip=True)
+
+        a_tag = cells[0].find("a")
+        if a_tag and a_tag.get("href"):
+            detail_link = a_tag.get("href")
+            full_detail_link = f"https://www.volby.cz/pls/ps2017nss/{detail_link}"
+        else:
+            full_detail_link = None
+        
+        results.append({
+            "indentifier": identifier,
+            "detail_link": full_detail_link,
+        })
+
+    return results
 
         
-        
-
-
-
 if __name__ == "__main__":
     #print(response_url(url_1))
-    main()
+    results = main_data(url_1)
+    pprint(results)
+    
     
 
 
