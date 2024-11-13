@@ -85,6 +85,7 @@ def main_data(url):
         
     
         identifier = cells[0].get_text(strip=True)
+        name = cells[1].get_text(strip=True)
 
         a_tag = cells[0].find("a")
         if a_tag and a_tag.get("href"):
@@ -96,6 +97,7 @@ def main_data(url):
         results.append({
             "indentifier": identifier,
             "detail_link": full_detail_link,
+            "name": name,
         })
 
     return results
