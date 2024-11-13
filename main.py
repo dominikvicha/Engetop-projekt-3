@@ -59,6 +59,7 @@ url_1 = "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=710
 
 def main():
     main_data(url_1)
+    
 
 def response_url(url):
     # odpoved ze serveru 
@@ -72,7 +73,18 @@ def main_data(url):
     table_tag = soup.find("div", {"id": "core"})
     rows = table_tag.find_all("tr")
 
-    pprint(rows)
+    # pprint(rows)      pro konotrolu
+
+    results = []
+    for row in rows[2:]:
+        cells = row.find_all("td")
+        results.append(cells)
+
+    pprint(results)
+    #return results
+
+        
+        
 
 
 
