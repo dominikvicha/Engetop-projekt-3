@@ -62,6 +62,32 @@ def main():
     main_data(url_1)
 """
 
+def extract_detail_data(detail_url):
+    # function for registred users, valid votes and envelopes. For now without the candidate parties. 
+
+    soup = response_url(detail_url)
+
+    try: 
+        registered_users = int(soup.find("td", {"class": "cislo", "headers": "sa2"}).get_text(strip=True).replace('\xa0', ''))
+    except AttributeError:
+        registered_users = None
+
+    try:
+        envelopes = int(soup.find("td", {"class": "cislo", "headers": "sa3"}).get_text(strip=True).replace('\xa0', ''))
+    except AttributeError:
+        envelopes = None
+
+    try:
+        valid_votes = int(soup.find("td", {"class": "cislo", "headers": "sa6"}).get_text(strip=True).replace('\xa0', ''))
+    except AttributeError:
+        valid_votes = None
+
+    return{
+        "registered_users": registered_users,
+        "envelopes": envelopes,
+        "valid_votes": valid_votes,
+    }
+
 def response_url(url):
     # odpoved ze serveru 
     response = requests.get(url)
@@ -93,11 +119,23 @@ def main_data(url):
             full_detail_link = f"https://www.volby.cz/pls/ps2017nss/{detail_link}"
         else:
             full_detail_link = None
+
+        if full_detail_link:
+            detail_data = extract_detail_data(full_detail_link)
+        else:
+            detail_data = {
+                "registered_users": None,
+                "envelopes": None,
+                "valid_votes": None,
+            }
         
         results.append({
             "indentifier": identifier,
             "detail_link": full_detail_link,
             "name": name,
+            "registered_users": detail_data["registered_users"],
+            "envelopes": detail_data["envelopes"],
+            "valid_votes": detail_data["valid_votes"],
         })
 
     return results
