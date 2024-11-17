@@ -101,7 +101,7 @@ def extract_detail_data(detail_url):
             if len(cells) >= 3:
                 candidate_name = cells[1].get_text(strip=True)
                 try:
-                    votes = int(cells[1].get_text(strip=True).replace('\xa0', ''))
+                    votes = int(cells[2].get_text(strip=True).replace('\xa0', ''))
                 except ValueError:
                     votes = 0   # 0 if invalid data
                 
