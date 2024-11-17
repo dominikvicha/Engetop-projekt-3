@@ -163,13 +163,32 @@ def main_data(url):
         })
 
     return results
+
+def write_to_csv(results, filename="results.csv"):
+    with open(filename, mode="w", newline="", encoding="UTF-8") as file: 
+        writer = csv.writer(file)
+
+        header = ["indentifier", "Name", "Registered Users", "Envelopes", "Valid Votes"] + list(results[0]["candidate_parties"].keys())
+        writer.writerow(header)
+
+        for row in results:
+            row_data = [
+                row["indentifier"],
+                row["name"],
+                row["registered_users"],
+                row["envelopes"],
+                row["valid_votes"],
+            ]
+            row_data.extend(row["candidate_parties"].values())
+            writer.writerow(row_data)
     
         
 if __name__ == "__main__":
     #print(response_url(url_1))
     results = main_data(url_1)
-    pprint(results)
-    
+    #pprint(results)
+    write_to_csv(results, "election_results.csv")
+    print("Results have been written")
     
 
 
