@@ -184,9 +184,7 @@ def write_to_csv(results, filename="results.csv"):
     
         
 if __name__ == "__main__":
-    #print(response_url(url_1))
     results = main_data(url_1)
-    #pprint(results)
     write_to_csv(results, "election_results.csv")
     print("Results have been written")
     
