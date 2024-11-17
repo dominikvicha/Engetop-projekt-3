@@ -62,8 +62,14 @@ def main():
     main_data(url_1)
 """
 
+def response_url(url):
+    # odpoved ze serveru 
+    response = requests.get(url)
+    return BeautifulSoup(response.text, 'html.parser')
+
+
 def extract_detail_data(detail_url):
-    # function for registred users, valid votes and envelopes. For now without the candidate parties. 
+    # function for registred users, valid votes and envelopes and the candidate parties 
 
     soup = response_url(detail_url)
 
@@ -82,17 +88,34 @@ def extract_detail_data(detail_url):
     except AttributeError:
         valid_votes = None
 
+    candidate_parties = {}
+
+    tables = soup.find_all("div", {"class": "t2_470"})
+
+    for table in tables:
+        rows = table.find_all("tr")
+
+        for row in rows: 
+            cells = row.find_all("td")
+
+            if len(cells) >= 3:
+                candidate_name = cells[1].get_text(strip=True)
+                try:
+                    votes = int(cells[1].get_text(strip=True).replace('\xa0', ''))
+                except ValueError:
+                    votes = 0   # 0 if invalid data
+                
+                candidate_parties[candidate_name] = votes
+
+    if not candidate_parties:           # simple error handling
+        print(f"No candidate parties found for: {detail_url}")
+
     return{
         "registered_users": registered_users,
         "envelopes": envelopes,
         "valid_votes": valid_votes,
+        "candidate_parties": candidate_parties,
     }
-
-def response_url(url):
-    # odpoved ze serveru 
-    response = requests.get(url)
-    return BeautifulSoup(response.text, 'html.parser')
-
 
 def main_data(url):
     #funkce na to dostat hlavni data 
@@ -109,7 +132,6 @@ def main_data(url):
         if not cells:
             continue
         
-    
         identifier = cells[0].get_text(strip=True)
         name = cells[1].get_text(strip=True)
 
@@ -127,6 +149,7 @@ def main_data(url):
                 "registered_users": None,
                 "envelopes": None,
                 "valid_votes": None,
+                "candidate_parties": {},
             }
         
         results.append({
@@ -136,10 +159,11 @@ def main_data(url):
             "registered_users": detail_data["registered_users"],
             "envelopes": detail_data["envelopes"],
             "valid_votes": detail_data["valid_votes"],
+            "candidate_parties": detail_data["candidate_parties"],
         })
 
     return results
-
+    
         
 if __name__ == "__main__":
     #print(response_url(url_1))
