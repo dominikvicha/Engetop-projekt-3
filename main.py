@@ -62,7 +62,7 @@ def main(url, output_data ):
 
 
 def response_url(url):
-    # odpoved ze serveru 
+    # response from the url  
     response = requests.get(url)
     return BeautifulSoup(response.text, 'html.parser')
 
@@ -117,7 +117,8 @@ def extract_detail_data(detail_url):
     }
 
 def main_data(url):
-    #funkce na to dostat hlavni data 
+    # function to get the data 
+    
     soup = response_url(url)
     table_tag = soup.find("div", {"id": "core"})
     rows = table_tag.find_all("tr")
