@@ -202,7 +202,6 @@ if __name__ == "__main__":
 
 
 
-    # nachystam aby kod fungoval pres jeden arg. 
-    # parser = argparse.ArgumentParser(description="")
+ 
     
 
