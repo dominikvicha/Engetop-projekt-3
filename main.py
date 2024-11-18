@@ -53,7 +53,7 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import argparse
-from pprint import pprint
+import sys
 
 
 def main(url, output_data ):
@@ -188,13 +188,17 @@ if __name__ == "__main__":
     parser.add_argument("output_data", type=str, help="The name of the output CSV file.")
     args = parser.parse_args()
 
-    results = main_data(args.url)
-    write_to_csv(results, args.output_data)
-    print(f"Results have been written to {args.output_data}.")
-
+    if not args.url.startswith("https://www.volby.cz/pls/ps2017nss/") and not args.url.startswith("http://www.volby.cz/pls/ps2017nss/"):
+        print("Format Error. The url must start with 'https://www.volby.cz/pls/ps2017nss/' or 'http://www.volby.cz/pls/ps2017nss/'")
+        print("Format of the commands must be: URL Adress and .csv file.")
+        sys.exit(1)
+    if not args.output_data.endswith(".csv"):
+        print("Name error: Name of the CSV file must end with the '.csv'")
+        print("Format of the commands must be: URL Adress and .csv file.")
+        sys.exit(1)
 
     main(args.url, args.output_data)
-    
+    print(f"Results have been written to {args.output_data}.")
 
 
 
