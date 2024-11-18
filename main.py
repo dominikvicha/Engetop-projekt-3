@@ -55,12 +55,11 @@ import csv
 import argparse
 from pprint import pprint
 
-url_1 = "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103"
 
-"""
-def main():
-    main_data(url_1)
-"""
+def main(url, output_data ):
+    data = main_data(url)
+    write_to_csv(data, output_data)
+
 
 def response_url(url):
     # odpoved ze serveru 
@@ -164,9 +163,9 @@ def main_data(url):
 
     return results
 
-def write_to_csv(results, filename="results.csv"):
-    with open(filename, mode="w", newline="", encoding="UTF-8") as file: 
-        writer = csv.writer(file)
+def write_to_csv(results, output_data):
+    with open(output_data, mode="w", newline="", encoding="UTF-8") as file: 
+        writer = csv.writer(file, delimiter=";", quoting=csv.QUOTE_MINIMAL)
 
         header = ["indentifier", "Name", "Registered Users", "Envelopes", "Valid Votes"] + list(results[0]["candidate_parties"].keys())
         writer.writerow(header)
@@ -184,9 +183,17 @@ def write_to_csv(results, filename="results.csv"):
     
         
 if __name__ == "__main__":
-    results = main_data(url_1)
-    write_to_csv(results, "election_results.csv")
-    print("Results have been written")
+    parser = argparse.ArgumentParser(description="Scrape election data and save it to CSV file.")
+    parser.add_argument("url", type=str, help="The URL of the unit to scrape.")
+    parser.add_argument("output_data", type=str, help="The name of the output CSV file.")
+    args = parser.parse_args()
+
+    results = main_data(args.url)
+    write_to_csv(results, args.output_data)
+    print(f"Results have been written to {args.output_data}.")
+
+
+    main(args.url, args.output_data)
     
 
 
