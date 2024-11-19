@@ -3,6 +3,8 @@
 - discord: Dominik V
 - email: dominik.vicha@gmail.com
 
+---
+
 ### Project Description ###
 - This is the final project from the ENGETO Online Python Academy for beginners. Its a tool for scrape the election data from the Czech election from 2017. The results is in the csv file, which can be use in other programms. The determinator is ";". When you want to work with the data in the excel, every value after ";" will have new cell. 
 
