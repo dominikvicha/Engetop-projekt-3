@@ -31,4 +31,8 @@ Dont forget to put the main.py before the URL!
     - valid votes: number of valid votes 
     - candidate_parties: votes for each party with the party name 
 
+### Usage ### 
+- To run the code, will place the URL and then the name of the ouput data CSV file.
+    python main.py <url> <output_data.csv>
+
 
