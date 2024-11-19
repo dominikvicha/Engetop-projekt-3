@@ -59,4 +59,4 @@ indentifier;Name;Registered Users;Envelopes;Valid Votes;Občanská demokratická
     3. First must be URL then the name of the csv file 
 
 
-### Enjoy the data and feel free to contatc me. ###
+### Enjoy the data and feel free to contact me. ###
