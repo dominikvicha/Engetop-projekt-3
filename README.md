@@ -13,7 +13,7 @@ Requiremts
     - pip install -r requirements.txt 
     - or pip install bs4 
     - pip instal requests
-- other libraries are starndart Python libraries you dont need to install 
+- other libraries are standart Python libraries you dont need to install 
 
 Function of the script
 - The scrip is operated by two arguments. 
@@ -23,7 +23,7 @@ Function of the script
 Dont forget to put the main.py before the URL! 
 
 CSV ouput data 
-- The results is the scv file with the data: 
+- The results is the csv file with the data: 
     - indentifier: disctrict code
     - name: name of the district 
     - registered_users: number of registred voters
