@@ -4,7 +4,7 @@
 - email: dominik.vicha@gmail.com
 
 ### Project Description ###
-- This is the final project from the ENGETO Online Python Academy for beginners. Its a tool for scrape the election data from the Czech election from 2017. The results is in the csv file, which can be use in other programms. 
+- This is the final project from the ENGETO Online Python Academy for beginners. Its a tool for scrape the election data from the Czech election from 2017. The results is in the csv file, which can be use in other programms. The determinator is ";". When you want to work with the data in the excel, every value after ";" will have new cell. 
 
 
 ### Requiremts ###
@@ -33,6 +33,18 @@ Dont forget to put the main.py before the URL!
 
 ### Usage ### 
 - To run the code, will place the URL and then the name of the ouput data CSV file.
-    python main.py <url> <output_data.csv>
+    - python main.py "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=1&xnumnuts=1100" praha.csv
+        - this will download the election data from the selected URL and save it to as file praha.csv
+
+- to get some help 
+    1. python main.py -h 
+    2. python main.oy --help 
+
+### Example of the ouput ###
 
 
+### Basic errors ###
+- the code has some basic error handling which is: 
+    1. Wrong URL adress 
+    2. Wrong ouput data format
+    3. First must be URL then the name of the csv file 
