@@ -184,9 +184,9 @@ def write_to_csv(results, output_data):
     
         
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Scrape election data and save it to CSV file.")
-    parser.add_argument("url", type=str, help="The URL of the unit to scrape.")
-    parser.add_argument("output_data", type=str, help="The name of the output CSV file.")
+    parser = argparse.ArgumentParser(description="Czech election data from 2017. More info please visit readme.md file. ")
+    parser.add_argument("url", type=str, help="The URL of the unit to scrape must be in format: 'https://www.volby.cz/pls/ps2017nss/...' or 'http://www.volby.cz/pls/ps2017nss/'...")
+    parser.add_argument("output_data", type=str, help="The name of the output CSV file. Must be in format 'name.csv'")
     args = parser.parse_args()
 
     if not args.url.startswith("https://www.volby.cz/pls/ps2017nss/") and not args.url.startswith("http://www.volby.cz/pls/ps2017nss/"):
