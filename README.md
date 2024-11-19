@@ -1,7 +1,7 @@
 # Engeto-projekt-3 - Election data 
-Autor: Vícha Dominik 
-discord: Dominik V
-email: dominik.vicha@gmail.com
+- Autor: Vícha Dominik 
+- discord: Dominik V
+- email: dominik.vicha@gmail.com
 
 ### Project Description ###
 - This is the final project from the ENGETO Online Python Academy for beginners. Its a tool for scrape the election data from the Czech election from 2017. The results is in the csv file, which can be use in other programms. 
@@ -22,7 +22,7 @@ email: dominik.vicha@gmail.com
 
 Dont forget to put the main.py before the URL! 
 
-# CSV ouput data ###
+### CSV ouput data ###
 - The results is the csv file with the data: 
     - indentifier: disctrict code
     - name: name of the district 
