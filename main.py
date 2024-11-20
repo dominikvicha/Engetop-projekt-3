@@ -57,6 +57,7 @@ import sys
 
 
 def main(url, output_data ):
+    # main function of the script
     data = main_data(url)
     write_to_csv(data, output_data)
 
@@ -68,7 +69,7 @@ def response_url(url):
 
 
 def extract_detail_data(detail_url):
-    # function for registred users, valid votes and envelopes and the candidate parties 
+    # function for registred users, valid votes and envelopes and the candidate parties (scraping from URL) 
 
     soup = response_url(detail_url)
 
@@ -165,6 +166,7 @@ def main_data(url):
     return results
 
 def write_to_csv(results, output_data):
+    # function to make a csv output data
     with open(output_data, mode="w", newline="", encoding="UTF-8") as file: 
         writer = csv.writer(file, delimiter=";", quoting=csv.QUOTE_MINIMAL)
 
